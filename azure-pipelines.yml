@@ -17,3 +17,18 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'Azure subscription 1(573b0f29-d7bf-4edd-8818-e18bcd10c588)'
+    ScriptType: 'InlineScript'
+    Inline: |
+      $rgName = 'PowershellTestdevops
+      
+      $resourceGroup = Get-AzResourceGroup -Name $rgName -ErrorAction SilentlyContinue
+      
+      if($resourceGroup -eq $null -or $resourceGroup -eq '')
+      {
+          New-AzResourceGroup -Name $rgName -Location EastUs -DefaultProfile $defaultContext 
+      }
+      
+      New-AzStorageAccount -ResourceGroupName $rgName -Name testdemodevops123 -SkuName Standard_LRS -Location EastUs -Kind StorageV2 -AccessTier Hot
