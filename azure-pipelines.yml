@@ -16,7 +16,7 @@ steps:
     ScriptType: 'InlineScript'
     azurePowerShellVersion: 'LatestVersion'
     Inline: |
-      $rgName = 'PowershellTestdevops
+      $rgName = 'PowershellTestdevops'
       
       $resourceGroup = Get-AzResourceGroup -Name $rgName -ErrorAction SilentlyContinue
       
